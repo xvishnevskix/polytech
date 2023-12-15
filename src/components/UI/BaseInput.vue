@@ -13,8 +13,12 @@
             :placeholder="placeholder"
         />
         <div class="baseInput__checkbox">
-            <input type="checkbox" v-model="checkboxValue" />
-            <label>Сделать поле обязательным</label>
+
+            <label>
+              <input style="margin-right: 5px;" class="real-checkbox" type="checkbox" v-model="checkboxValue" />
+              <span class="custom-checkbox"></span>
+              Сделать поле обязательным
+            </label>
         </div>
     </div>
 </template>
@@ -69,6 +73,65 @@ watch(checkboxValue, () => {
     &__checkbox {
         display: flex;
         gap: 16px;
+      font-weight: 500;
+      line-height: 17px;
+      font-size: 14px;
+
+      label {
+        display: flex;
+        text-align: center;
+        align-items: center;
+
+      }
     }
+}
+
+.real-checkbox {
+  width: 0;
+  height: 0;
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.custom-checkbox {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background: #f6f6f6;
+  border: 1px solid #6c6c6c;
+  border-radius: 4px;
+  margin-right: 12px;
+  vertical-align: sub;
+  position: relative;
+
+
+
+  &:before {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: url('../../assets/icons/check.svg') ;
+
+    background-size: contain;
+    position: absolute;
+    left: 20%;
+    top: 20%;
+    opacity: 0;
+    visibility: hidden;
+
+  }
+}
+
+.real-checkbox:checked + .custom-checkbox:before {
+  opacity: 1;
+  visibility: visible;
+
+}
+
+.real-checkbox:checked + .custom-checkbox {
+
+  border: 1px solid var(--primary_color);
 }
 </style>

@@ -22,11 +22,16 @@
             />
         </div>
         <div class="previewForm__check">
-            <input type="checkbox" />
+
             <label>
-                Нажимая кнопку «Отправить», я принимаю условия политики
-                конфиденциальности
+              <input class="real-checkbox" type="checkbox" />
+              <span class="custom-checkbox"></span>
+
             </label>
+          <label>
+            Нажимая кнопку «Отправить», я принимаю условия политики
+                конфиденциальности
+          </label>
         </div>
         <base-button size="max">Отправить</base-button>
     </form>
@@ -119,5 +124,55 @@ function submitForm() {
     }
   }
 
+}
+
+.real-checkbox {
+  width: 0;
+  height: 0;
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.custom-checkbox {
+  margin-top: 7px;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background: #ffffff;
+  border: 1px solid #6c6c6c;
+  border-radius: 4px;
+
+  vertical-align: sub;
+  position: relative;
+
+
+
+  &:before {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: url('../assets/icons/check.svg'); ;
+
+    background-size: contain;
+    position: absolute;
+    left: 20%;
+    top: 20%;
+    opacity: 0;
+    visibility: hidden;
+
+  }
+}
+
+.real-checkbox:checked + .custom-checkbox:before {
+  opacity: 1;
+  visibility: visible;
+
+}
+
+.real-checkbox:checked + .custom-checkbox {
+
+  border: 1px solid var(--primary_color);
 }
 </style>
