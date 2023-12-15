@@ -1,6 +1,6 @@
 # 📗 SibTechnologies
 
-Demo: polytech-iota.vercel.app
+Demo: https://polytech-iota.vercel.app/
 
 
 
