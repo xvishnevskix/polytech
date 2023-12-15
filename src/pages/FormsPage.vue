@@ -4,8 +4,10 @@
             <base-logo />
             <ul class="forms__info-list">
                 <li
+
                     v-for="point in list"
                     :key="point.id"
+                    @click="handleClick(point)"
                     :class="{ active: point.id === 2 ? 'active' : '' }"
                 >
                     {{ point.text }}
@@ -20,7 +22,7 @@
                     >Создать форму</base-button
                 >
             </div>
-            <div v-for="page in listPages" :key="page.id" class="forms__list-card">
+            <div v-for="page in listFields" :key="page.id" class="forms__list-card">
                 <base-card title="Форма регистрации участников" />
 
             </div>
@@ -29,19 +31,26 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue'
 import BaseCard from '../components/UI/BaseCard.vue';
 import BaseLogo from '../components/UI/BaseLogo.vue';
-import { useRoutes } from '../hooks/useRoutes.js'
 
+import { useRoutes } from '../hooks/useRoutes.js'
+import { useRouter } from 'vue-router'
 const list = ref(useRoutes())
 
-const listPages = [
-
+const listFields = [
   {id: 1,},
   {id: 2,},
   {id: 3},
 ]
+
+const router = useRouter()
+const handleClick = (link) => {
+  console.log(link.link)
+  router.push(`/${link.link}`)
+}
+
 
 </script>
 

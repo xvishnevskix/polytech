@@ -7,7 +7,7 @@ import PreviewPage from '../pages/PreviewPage.vue';
 import NotFoundPage from '../pages/NotFoundPage.vue';
 
 const routes = [
-    { path: '/', redirect: '/new-form' },
+    { path: '/', redirect: '/new-form/fields' },
     { path: '/auth', component: AuthPage },
     {
         path: '/forms',

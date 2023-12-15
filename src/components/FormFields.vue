@@ -33,11 +33,13 @@
 
         <div class="fields__settings">
             <h2>Поля</h2>
-            <base-input
-                :id="item.id"
-                v-for="item in state.fields"
-                :key="item.id"
-            />
+            <transition-group name="fields-list">
+              <base-input
+                  :id="item.id"
+                  v-for="item in state.fields"
+                  :key="item.id"
+              />
+            </transition-group>
         </div>
 
         <base-button size="field" @click="addNewField">
@@ -105,5 +107,18 @@ function addNewField() {
             }
         }
     }
+}
+
+.fields-list-move {
+  transition: all 0.5s ease;
+}
+.fields-list-enter-active,
+.fields-list-leave-active {
+  transition: all 0.5s ease;
+}
+.fields-list-enter-from,
+.fields-list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
 }
 </style>

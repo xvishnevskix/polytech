@@ -2,16 +2,20 @@
     <div class="newForm">
         <div class="newForm__points">
             <base-logo />
-            <base-button size="clearWithIcon" @click="handleBack">
-                <img src="../assets/icons/arrow-left.svg" alt="back" />
-                <span>Назад</span>
+            <base-button  class="form-button" size="clearWithIcon" @click="handleBack">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.91659 5H2.08325" stroke="black" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M4.99992 7.91732L2.08325 5.00065L4.99992 2.08398" stroke="black" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+                <span class="slot-item">Назад</span>
             </base-button>
             <ul class="newForm__points-list">
                 <li
+
                     v-for="point in list"
                     :key="point.id"
                     :class="{active: point.id === 3 ? 'active' : ''} "
-                    @click="handleOption(point.link)"
+                    @click="handleClick(point.link)"
                 >
                     {{ point.text }}
                 </li>
@@ -36,14 +40,6 @@ import { useRoutes } from '../hooks/useRoutes.js'
 
 const router = useRouter();
 
-const listPoints = ref([
-    { id: 1, text: 'Тип формы', link: 'type', active: false },
-    { id: 2, text: 'Сущности', link: 'entities', active: false },
-    { id: 3, text: 'Поля', link: 'fields', active: true },
-    { id: 4, text: 'Правила показа полей', link: 'rules', active: false },
-    { id: 5, text: 'Другие настройки', link: 'settings', active: false },
-]);
-
 const list = ref(useRoutes())
 
 function handleOption(path) {
@@ -55,10 +51,13 @@ function handleBack() {
 }
 
 onMounted(() => {
-    handleOption('fields');
-    console.log(listPoints);
-    console.log(list)
+    router.push(`/new-form/fields`);
 });
+
+function handleClick(link) {
+
+  router.push(`/${link}`);
+}
 </script>
 
 <style lang="scss" scoped>
@@ -102,8 +101,43 @@ onMounted(() => {
     }
 
     &__display {
+      display: flex;
+      justify-content: center;
+      align-items: start;
         padding: 80px;
         background: var(--primary_color);
+
     }
+}
+
+.slot-item {
+  transition: transform 0.4s, color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+
+  &:hover {
+    transition: transform 0.4s, color 0.3s ease;
+    transform: translateX(-2px);
+    color: var(--primary_color);
+    background-color: #fff;
+  }
+
+}
+
+.form-button {
+  display: flex;
+  align-items: center;
+
+  &:hover {
+
+    svg {
+
+      path {
+        transition: transform 0.3s, color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, stroke 0.3s ease, fill 0.3s ease;
+        fill:  var(--primary_color);
+        stroke: var(--primary_color);
+      }
+    }
+  }
+
+
 }
 </style>
