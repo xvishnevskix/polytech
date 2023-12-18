@@ -101,7 +101,7 @@ function addNewField() {
                 font-size: 16px;
                 font-weight: 400;
                 padding: 10px;
-                height: 55px;
+                height: 54px;
                 width: 42%;
                 border-radius: 10px;
             }
