@@ -116,8 +116,8 @@ watch(checkboxValue, () => {
 
     background-size: contain;
     position: absolute;
-    left: 20%;
-    top: 20%;
+    left: 17%;
+    top: 15%;
     opacity: 0;
     visibility: hidden;
 

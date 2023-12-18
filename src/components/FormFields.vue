@@ -9,7 +9,7 @@
                     @submit.prevent="addNewField"
                     class="fields__hidden-choice"
                 >
-                    <label for="typeField">Выберите тип поля</label>
+                    <label for="typeField">Тип поля</label>
                     <select id="typeField" v-model="selected">
                         <option value="text">Текстовое поле</option>
                         <option value="number">Числовое поле</option>
@@ -18,7 +18,7 @@
                     <label for="placeholder">Название поля</label>
                     <input
                         id="placeholder"
-                        placeholder="Введите название поля"
+                        placeholder="Название поля..."
                         v-model="placeholder"
                         required
                     />
@@ -101,8 +101,8 @@ function addNewField() {
                 font-size: 16px;
                 font-weight: 400;
                 padding: 10px;
-                height: 50px;
-                width: 50%;
+                height: 55px;
+                width: 42%;
                 border-radius: 10px;
             }
         }
